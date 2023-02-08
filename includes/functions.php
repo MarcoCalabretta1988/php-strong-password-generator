@@ -26,3 +26,25 @@ function get_random_string_to_array($length, $array)
 
     return  $random_password;
 };
+
+
+function  get_norepeatchar_string_to_array($length, $array)
+{
+
+    $random_password = '';
+    $random_char = '';
+    $random_element = '';
+    $i = 0;
+    while ($i <= $length) {
+        var_dump($i);
+        $random_element = rand(1, (count($array) - 1));
+        $random_char = $array[$random_element];
+        if (!str_contains($random_password, $random_char)) {
+            $random_password .= $random_char;
+            $i++;
+            var_dump($random_password);
+        }
+    }
+
+    return  $random_password;
+};

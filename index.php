@@ -7,7 +7,9 @@ include 'includes/data/data.php';
 //VARIABLES
 $message = '';
 $error = false;
+$repeat = $_POST['repeat'] ?? true;
 $number_of_char = $_POST['char_number'] ?? null;
+
 
 
 //CONTROL AND SET MESSAGE
@@ -20,7 +22,11 @@ if (!$number_of_char) {
 } else {
     $all_characters = array_merge($uppercase_characters, $lowercase_characters, $numbers, $symbols);
     session_start();
-    $_SESSION['password'] = get_random_string_to_array($number_of_char, $all_characters);
+    if ($repeat) {
+        $_SESSION['password'] = get_random_string_to_array($number_of_char, $all_characters);
+    } else {
+        $_SESSION['password'] = get_norepeatchar_string_to_array($number_of_char, $all_characters);
+    }
     header('Location: ./result.php');
 }
 
@@ -44,6 +50,15 @@ if (!$number_of_char) {
                 <div class="mb-3">
                     <label for="characters_num" class="form-label">Number of characters: </label>
                     <input type="number" class="form-control w-25" id="characters_num" name="char_number" value="<?= $number_of_char ?>">
+                </div>
+                <!-- RADIO INPUT -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="repeat" id="repeat" value="repeat" <? if ($repeat) echo 'checked' ?>>
+                    <label class="form-check-label" for="repeat">Characters repeat</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="repeat" id="no-repeat" value="" <? if (!$repeat) echo 'checked' ?>>
+                    <label class="form-check-label" for="no-repeat">Characters no repeat</label>
                 </div>
                 <!-- BUTTON  -->
                 <div class="my-5 text-center">
