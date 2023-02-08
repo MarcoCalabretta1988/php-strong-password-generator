@@ -13,6 +13,7 @@ body {
     height: 600px;
     width: 1000px;
     border-radius: 20px;
+    background-color: white;
 }
 
 .alert {
