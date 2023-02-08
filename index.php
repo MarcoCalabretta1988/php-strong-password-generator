@@ -14,9 +14,9 @@ $number_of_char = $_POST['char_number'] ?? null;
 
 //CONTROL AND SET MESSAGE
 if (!$number_of_char) {
-    $message = 'Insert length of password tra 1 e 15';
-} elseif ($number_of_char > 15 || $number_of_char < 1) {
-    $message = 'WARNING! You must insert a number between 1 and 15';
+    $message = 'Insert length of password tra 5 e 20';
+} elseif ($number_of_char > 20 || $number_of_char < 5) {
+    $message = 'WARNING! You must insert a number between 5 and 20';
     $error = true;
     $number_of_char = null;
 } else {
