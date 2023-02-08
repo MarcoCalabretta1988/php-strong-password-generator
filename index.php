@@ -6,12 +6,17 @@ include 'includes/data/data.php';
 
 //VARIABLES
 $message = '';
+$error = false;
 $number_of_char = $_POST['char_number'] ?? null;
 
 
 //CONTROL AND SET MESSAGE
 if (!$number_of_char) {
     $message = 'Insert length of password tra 1 e 15';
+} elseif ($number_of_char > 15 || $number_of_char < 1) {
+    $message = 'WARNING! You must insert a number between 1 and 15';
+    $error = true;
+    $number_of_char = null;
 } else {
     $all_characters = array_merge($uppercase_characters, $lowercase_characters, $numbers, $symbols);
     session_start();
@@ -32,13 +37,13 @@ if (!$number_of_char) {
             <!-- TITLE -->
             <h1 class="text-center p-2">Strong Password Generator</h1>
             <!-- MESSAGE BOARD -->
-            <div class="alert bg-info-subtle my-3 d-flex align-items-center justify-content-center fw-bold"><?= $message ?></div>
+            <div class="alert <?= $error ? 'error bg-danger' : 'bg-info-subtle' ?>  my-3 d-flex align-items-center justify-content-center fw-bold"><?= $message ?></div>
             <!--  INFORMATION FORM -->
             <form action="" method="POST" class="bg-secondary text-white p-5 ">
                 <!-- NUMBER INPUT -->
                 <div class="mb-3">
                     <label for="characters_num" class="form-label">Number of characters: </label>
-                    <input type="number" class="form-control w-25" id="characters_num" min="1" max="15" name="char_number" value="<?= $number_of_char ?>">
+                    <input type="number" class="form-control w-25" id="characters_num" name="char_number" value="<?= $number_of_char ?>">
                 </div>
                 <!-- BUTTON  -->
                 <div class="my-5 text-center">

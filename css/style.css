@@ -22,3 +22,8 @@ body {
     border: 2px solid blue;
     border-radius: 20px;
 }
+
+.alert.error {
+    border: 2px solid rgb(145, 5, 5);
+    color: rgb(255, 187, 0);
+}
