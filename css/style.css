@@ -1,0 +1,21 @@
+/* UTILITIES */
+
+/* GENERIC */
+
+body {
+
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
+    height: 100vh;
+}
+
+.content-box {
+    height: 600px;
+    width: 1000px;
+    border-radius: 20px;
+}
+
+.alert {
+    height: 100px;
+    width: 100%;
+}
